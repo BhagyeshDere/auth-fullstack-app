@@ -1,0 +1,45 @@
+# ======================
+# Node Modules
+# ======================
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# ======================
+# Environment Variables (VERY IMPORTANT)
+# ======================
+.env
+.env.*
+client/.env
+server/.env
+
+# ======================
+# Build Folders
+# ======================
+build/
+client/build/
+dist/
+
+# ======================
+# Logs
+# ======================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ======================
+# OS Files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Coverage
+# ======================
+coverage/
+
+# ======================
+# Vercel
+# ======================
+.vercel
