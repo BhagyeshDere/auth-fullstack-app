@@ -3,22 +3,21 @@
 # ======================
 node_modules/
 client/node_modules/
-server/node_modules/
 
 # ======================
 # Environment Variables (VERY IMPORTANT)
 # ======================
 .env
 .env.*
-client/.env
-server/.env
+client/.env*
+api/.env*
 
 # ======================
 # Build Folders
 # ======================
 build/
-client/build/
 dist/
+client/build/
 
 # ======================
 # Logs
@@ -43,3 +42,14 @@ coverage/
 # Vercel
 # ======================
 .vercel
+
+# ======================
+# IDE / Editor
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# Misc
+# ======================
+*.log
