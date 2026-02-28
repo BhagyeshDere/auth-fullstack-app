@@ -1,23 +1,24 @@
 # ======================
-# Node Modules
+# Dependencies
 # ======================
 node_modules/
 client/node_modules/
+server/node_modules/
 
 # ======================
-# Environment Variables (VERY IMPORTANT)
+# Environment Variables
 # ======================
 .env
 .env.*
-client/.env*
-api/.env*
+client/.env
+server/.env
 
 # ======================
-# Build Folders
+# Build / Production
 # ======================
 build/
-dist/
 client/build/
+dist/
 
 # ======================
 # Logs
@@ -25,13 +26,6 @@ client/build/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-
-# ======================
-# OS Files
-# ======================
-.DS_Store
-Thumbs.db
 
 # ======================
 # Coverage
@@ -39,17 +33,7 @@ Thumbs.db
 coverage/
 
 # ======================
-# Vercel
+# OS / System Files
 # ======================
-.vercel
-
-# ======================
-# IDE / Editor
-# ======================
-.vscode/
-.idea/
-
-# ======================
-# Misc
-# ======================
-*.log
+.DS_Store
+Thumbs.db

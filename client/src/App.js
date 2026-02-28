@@ -1,53 +1,63 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import AdminLayout from "./components/Admin/AdminLayout";
+import Dashboard from "./pages/Admin/Dashboard";
+import Users from "./pages/Admin/Users";
+import Products from "./pages/Admin/Products";
 
-function Dashboard() {
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  };
-
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-      <h1 className="text-3xl mb-6">🎉 Welcome to Dashboard</h1>
-      <button
-        onClick={handleLogout}
-        className="px-6 py-3 bg-red-600 rounded-lg"
-      >
-        Logout
-      </button>
-    </div>
-  );
-}
-
-// 🔐 Protected Route
-function PrivateRoute({ children }) {
+// 🔐 Protected Route (Admin only)
+const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" />;
-}
+  return token ? children : <Navigate to="/" replace />;
+};
+
+// 🚫 Public Route (Prevents logged-in users from seeing Login/Register)
+const PublicRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? <Navigate to="/admin/dashboard" replace /> : children;
+};
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        {/* Public Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
-        {/* Protected Route */}
+        {/* Default page = Login */}
         <Route
-          path="/dashboard"
+          path="/"
           element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
           }
         />
 
-        {/* Default Redirect */}
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        {/* Protected Admin */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="products" element={<Products />} />
+        </Route>
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
 
       </Routes>
     </BrowserRouter>
